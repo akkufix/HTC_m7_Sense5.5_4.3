@@ -53,7 +53,6 @@ config PERSISTENT_TRACER
 	depends on HAVE_FUNCTION_TRACER
 	select FUNCTION_TRACER
 	select ANDROID_PERSISTENT_RAM
-	default n
 	help
 	  persistent_trace traces function calls into a persistent ram
 	  buffer that can be decoded and dumped after reboot through
@@ -77,6 +76,15 @@ config ANDROID_LOW_MEMORY_KILLER
 	default N
 	---help---
 	  Register processes to be killed when memory is low
+
+config ANDROID_LOW_MEMORY_KILLER_DO_NOT_KILL_PROCESS
+	bool "Android Low Memory Killer: do not kill process inside user defined white-lists"
+	depends on ANDROID_LOW_MEMORY_KILLER
+	default y
+	---help---
+	  Allows the user to define processes and system processes
+	  white-lists to not be killed by lowmemorykiller, unless
+	  it is absolutely necessary.
 
 config ANDROID_LOW_MEMORY_KILLER_AUTODETECT_OOM_ADJ_VALUES
 	bool "Android Low Memory Killer: detect oom_adj values"

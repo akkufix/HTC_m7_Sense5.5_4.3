@@ -449,6 +449,7 @@ deps_config := \
 	drivers/net/wimax/SQN/Kconfig \
 	drivers/net/wimax/i2400m/Kconfig \
 	drivers/net/wimax/Kconfig \
+	drivers/net/wireless/bcmdhd_4334_mcc/Kconfig \
 	drivers/net/wireless/bcmdhd_4335_mcc/Kconfig \
 	drivers/net/wireless/bcmdhd_4335/Kconfig \
 	drivers/net/wireless/bcmdhd_4334/Kconfig \

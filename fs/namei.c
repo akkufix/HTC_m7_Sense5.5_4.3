@@ -1221,13 +1221,6 @@ static int link_path_walk(const char *name, struct nameidata *nd)
 			if (err)
 				return err;
 		}
-
-		if (unlikely(nd->inode->i_sb != nd->path.dentry->d_sb)) {
-			pr_info("%s(%s): fail to lookup (%s)\n", __func__, current->comm, name);
-			err = -ENOENT;
-			break;
-		}
-
 		if (can_lookup(nd->inode))
 			continue;
 		err = -ENOTDIR; 
@@ -2262,7 +2255,7 @@ out:
 static long do_rmdir(int dfd, const char __user *pathname)
 {
 	int error = 0;
-	char * name = NULL;
+	char * name;
 	struct dentry *dentry;
 	struct nameidata nd;
 
@@ -2354,7 +2347,7 @@ int vfs_unlink(struct inode *dir, struct dentry *dentry)
 static long do_unlinkat(int dfd, const char __user *pathname)
 {
 	int error;
-	char *name = NULL;
+	char *name;
 	struct dentry *dentry;
 	struct nameidata nd;
 	struct inode *inode = NULL;
@@ -2706,8 +2699,8 @@ SYSCALL_DEFINE4(renameat, int, olddfd, const char __user *, oldname,
 	struct dentry *old_dentry, *new_dentry;
 	struct dentry *trap;
 	struct nameidata oldnd, newnd;
-	char *from = NULL;
-	char *to = NULL;
+	char *from;
+	char *to;
 	int error;
 
 	error = user_path_parent(olddfd, oldname, &oldnd, &from);

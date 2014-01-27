@@ -1209,6 +1209,8 @@ extern unsigned int __machine_arch_type;
 #define MACH_TYPE_DELUXE_UB1           4372
 #define MACH_TYPE_M7_DCG               4415
 #define MACH_TYPE_M7_DUG               4416
+#define MACH_TYPE_M7_WLJ               4454
+#define MACH_TYPE_M7_EVM               9999
 
 #ifdef CONFIG_ARCH_EBSA110
 # ifdef machine_arch_type
@@ -15572,6 +15574,30 @@ extern unsigned int __machine_arch_type;
 # define machine_is_m7_dug()	(machine_arch_type == MACH_TYPE_M7_DUG)
 #else
 # define machine_is_m7_dug()	(0)
+#endif
+
+#ifdef CONFIG_MACH_M7_WLJ
+# ifdef machine_arch_type
+#  undef machine_arch_type
+#  define machine_arch_type	__machine_arch_type
+# else
+#  define machine_arch_type	MACH_TYPE_M7_WLJ
+# endif
+# define machine_is_m7_wlj()	(machine_arch_type == MACH_TYPE_M7_WLJ)
+#else
+# define machine_is_m7_wlj()	(0)
+#endif
+
+#ifdef CONFIG_MACH_M7_EVM
+# ifdef machine_arch_type
+#  undef machine_arch_type
+#  define machine_arch_type	__machine_arch_type
+# else
+#  define machine_arch_type	MACH_TYPE_M7_EVM
+# endif
+# define machine_is_m7_evm()	(machine_arch_type == MACH_TYPE_M7_EVM)
+#else
+# define machine_is_m7_evm()	(0)
 #endif
 
 /*
